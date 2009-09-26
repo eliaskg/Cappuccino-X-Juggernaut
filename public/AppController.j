@@ -139,9 +139,9 @@
 	var connection = [CPURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (void)renderColor:(CPString)aColor
+- (void)renderColor:(JSObject)anObject
 {
-	[_contentView setBackgroundColor:[CPColor colorWithCSSString:aColor]];
+	[_contentView setBackgroundColor:[CPColor colorWithCSSString:anObject.cssString]];
 }
 
 - (void)saveNickname {
@@ -165,9 +165,9 @@
 	var connection = [CPURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (void)renderNewMessage:(CPArray)anArray
+- (void)renderNewMessage:(JSObject)anObject
 {
-	_messages = [_messages arrayByAddingObject:anArray];
+	_messages = [_messages arrayByAddingObject:[anObject.sender, anObject.message]];
     [_messagesCollectionView setContent:_messages];
 	[_chatTextField setObjectValue:@""];
 	[[_chatTextField window] makeFirstResponder:_chatTextField]
